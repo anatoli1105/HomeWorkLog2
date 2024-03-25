@@ -1,12 +1,15 @@
 package org.example;
 
-public class MayList implements IntegerList{
-    Integer[]arr=new Integer[8];
+import java.util.Arrays;
+
+public class MayList implements IntegerList {
+    Integer[] arr = new Integer[4];
+
     @Override
     public Integer add(int item) {
         for (int i = 0; i < arr.length; i++) {
 
-            if (arr[i]==null) {
+            if (arr[i] == null) {
                 arr[i] = item;
                 break;
             }
@@ -14,11 +17,12 @@ public class MayList implements IntegerList{
         return item;
     }
 
+
     @Override
     public Integer add(int index, Integer item) {
-        if(index>=arr.length){
+        if (index >= arr.length) {
             throw new NotFoundIndex();
-        }else {
+        } else {
             arr[index] = item;
         }
 
@@ -27,9 +31,9 @@ public class MayList implements IntegerList{
 
     @Override
     public Integer set(int index, Integer item) {
-        if(index>=arr.length){
+        if (index >= arr.length) {
             throw new NotFoundIndex();
-        }else {
+        } else {
             arr[index] = item;
         }
         return item;
@@ -38,11 +42,11 @@ public class MayList implements IntegerList{
     @Override
     public Integer remove(Integer item) {
         for (int i = 0; i < arr.length; i++) {
-            if(arr[i].equals(item)){
-                arr[i]=null;
+            if (arr[i].equals(item)) {
+                arr[i] = null;
                 break;
-            }else{
-                throw  new NotFoundElementOfList();
+            } else {
+                throw new NotFoundElementOfList();
             }
 
 
@@ -52,16 +56,15 @@ public class MayList implements IntegerList{
 
     @Override
     public Integer remove(int index) {
-        Integer item=arr[index];
+        Integer item = arr[index];
 
-        if(arr[index]!=null){
+        if (arr[index] != null) {
 
-            arr[index]=null;
+            arr[index] = null;
 
-        }else{
-            throw  new NotFoundElementOfList();
+        } else {
+            throw new NotFoundElementOfList();
         }
-
 
 
         return item;
@@ -70,10 +73,9 @@ public class MayList implements IntegerList{
     @Override
     public boolean contains(Integer item) {
         for (int i = 0; i < arr.length; i++) {
-            if(arr[i]==null){
+            if (arr[i] == null) {
                 i++;
-            }
-            else if(arr[i].equals(item)){
+            } else if (arr[i].equals(item)) {
                 return true;
             }
 
@@ -84,10 +86,9 @@ public class MayList implements IntegerList{
     @Override
     public int indexOf(Integer item) {
         for (int i = 0; i < arr.length; i++) {
-            if(arr[i]==null){
+            if (arr[i] == null) {
                 i++;
-            }
-            else if(arr[i].equals(item)){
+            } else if (arr[i].equals(item)) {
                 return i;
             }
 
@@ -97,11 +98,10 @@ public class MayList implements IntegerList{
 
     @Override
     public int lastIndexOf(Integer item) {
-        for (int i = arr.length-1; i>=0; i--) {
-            if(arr[i]==null){
+        for (int i = arr.length - 1; i >= 0; i--) {
+            if (arr[i] == null) {
                 i--;
-            }
-            else if(arr[i].equals(item)){
+            } else if (arr[i].equals(item)) {
                 return i;
             }
 
@@ -111,7 +111,7 @@ public class MayList implements IntegerList{
 
     @Override
     public Integer get(int index) {
-        if(index>arr.length){
+        if (index > arr.length) {
             throw new NotFoundIndex();
         }
         return arr[index];
@@ -124,9 +124,9 @@ public class MayList implements IntegerList{
 
     @Override
     public int size() {
-        int count=0;
+        int count = 0;
         for (int i = 0; i < arr.length; i++) {
-            if(arr[i]!=null){
+            if (arr[i] != null) {
                 count++;
             }
 
@@ -137,7 +137,7 @@ public class MayList implements IntegerList{
     @Override
     public boolean isEmpty() {
         for (int i = 0; i < arr.length; i++) {
-            if(arr[i]!=null){
+            if (arr[i] != null) {
                 return false;
             }
 
@@ -149,8 +149,8 @@ public class MayList implements IntegerList{
     @Override
     public void clear() {
         for (int i = 0; i < arr.length; i++) {
-            if(arr[i]!=null){
-                arr[i]=null;
+            if (arr[i] != null) {
+                arr[i] = null;
             }
 
         }
@@ -158,7 +158,55 @@ public class MayList implements IntegerList{
 
     @Override
     public Integer[] toArray() {
-        return new Integer[]{4,7,9,3};
+        return new Integer[]{4, 7, 9, 3};
     }
 
+    public  Integer[] grow(Integer[] arr, Integer item) {
+        int count=0;
+        if (count == arr.length) {
+
+            arr = newArr(arr, item);
+            count++;
+        }
+
+        for (int i = 0; i < arr.length; i++) {
+
+            arr[i] = add2(item,arr);
+            break;
+
+
+
+
+            }
+
+
+
+
+
+
+        return arr;
+
+
+
+    }
+
+    public static Integer[] newArr(Integer[] arr, Integer item) {
+
+        Integer[] newArr = new Integer[arr.length + (arr.length / 2)];
+        newArr = Arrays.copyOf(arr, arr.length + (arr.length / 2));
+
+        return newArr;
+
+
+    }
+    public static  Integer add2(int item,Integer[]arr) {
+        for (int i = 0; i < arr.length; i++) {
+
+            if (arr[i] == null) {
+                arr[i] = item;
+                break;
+            }
+        }
+        return item;
+    }
 }

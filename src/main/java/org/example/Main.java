@@ -7,8 +7,18 @@ import java.util.Random;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
+        Integer[]arr3=new Integer[4];
+
+
         MayList mayList = new MayList();
-        System.out.println(Arrays.toString(mayList.arr));
+        mayList.grow(arr3,3);
+        mayList.grow(arr3,7);
+        mayList.grow(arr3,8);
+        mayList.grow(arr3,3);
+        mayList.grow(arr3,3);
+        mayList.grow(arr3,5);
+        mayList.grow(arr3,9);
+        System.out.println(Arrays.toString(arr3));
         int[] array = new int[100];
         for (int i = 0; i < array.length; i++) {
             Random random = new Random();
@@ -19,7 +29,7 @@ public class Main {
         int[] array2 = Arrays.copyOf(array, 100);
 
 
-        System.out.println(Arrays.toString(array));
+       // System.out.println(Arrays.toString(array));
         long start = System.currentTimeMillis();
         sortBubble(array);
 
